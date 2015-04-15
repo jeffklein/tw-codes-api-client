@@ -2,3 +2,4 @@
 /target/
 *.iml
 /etc/
+atlassian-ide-plugin.xml
