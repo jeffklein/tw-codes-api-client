@@ -1,5 +1,7 @@
 package org.jeffklein.turfwars.codes.client;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -12,6 +14,8 @@ import java.util.List;
  * Tests for the TurfWars TempCodeApiClient
  */
 public class TempCodeApiTest {
+
+  private static Log LOG = LogFactory.getLog(TempCodeApiTest.class);
 
   private TempCodeApiClient client = new TempCodeApiClient();
 
@@ -46,6 +50,7 @@ public class TempCodeApiTest {
   @Test
   public void testGetBodyJson() throws Throwable {
     JSONObject bodyJson = client.getBodyJson();
+    LOG.info('\n'+bodyJson.toString(2));
     Assert.assertNotNull(bodyJson.getLong("timestamp"));
     Assert.assertTrue(String.valueOf(bodyJson.getLong("timestamp")).startsWith("14"));
     Assert.assertNotNull(bodyJson.getLong("next_update"));
