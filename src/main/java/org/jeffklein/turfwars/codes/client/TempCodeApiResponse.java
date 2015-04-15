@@ -1,4 +1,4 @@
-package org.jeffklein.tw.tempcodes.client;
+package org.jeffklein.turfwars.codes.client;
 
 import java.util.Date;
 import java.util.List;

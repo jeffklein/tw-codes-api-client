@@ -1,4 +1,4 @@
-package org.jeffklein.tw.tempcodes.client;
+package org.jeffklein.turfwars.codes.client;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;

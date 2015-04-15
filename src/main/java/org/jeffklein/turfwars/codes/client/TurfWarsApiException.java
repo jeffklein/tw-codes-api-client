@@ -1,4 +1,4 @@
-package org.jeffklein.tw.tempcodes.client;
+package org.jeffklein.turfwars.codes.client;
 
 /**
  * Unchecked exception indicating something bad happened while interacting with the TW API.
