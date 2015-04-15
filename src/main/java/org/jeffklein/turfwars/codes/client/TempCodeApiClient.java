@@ -28,7 +28,7 @@ public class TempCodeApiClient {
         return getTempCodeApiResponse().getCodes();
     }
 
-    protected TempCodeApiResponse getTempCodeApiResponse() throws TurfWarsApiException {
+    public TempCodeApiResponse getTempCodeApiResponse() throws TurfWarsApiException {
         JSONObject bodyJson = getBodyJson();
         Date timestamp = new Date(bodyJson.getLong("timestamp"));
         Date nextUpdate = new Date(bodyJson.getLong("next_update"));
