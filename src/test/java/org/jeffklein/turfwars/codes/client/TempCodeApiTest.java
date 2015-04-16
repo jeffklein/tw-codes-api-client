@@ -1,12 +1,19 @@
 package org.jeffklein.turfwars.codes.client;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -69,5 +76,14 @@ public class TempCodeApiTest {
   public void testDigestHasCorrectValue() throws NoSuchAlgorithmException {
     String expectedDigest = "b2a73767d7aec111e675955cb0ce63605b4ec48d";
     Assert.assertEquals(client.digest(), expectedDigest);
+  }
+
+  @Test
+  public void testDeserializeSampleJson() throws IOException {
+    InputStream inputStream = new ClassPathResource("sample.json").getInputStream();
+    ObjectMapper mapper = new ObjectMapper();
+    TempCodeApiResponseJackson pojo = mapper.readValue(inputStream, new TypeReference<TempCodeApiResponseJackson>() { });
+    Assert.assertNotNull(pojo);
+    LOG.info(pojo.toString());
   }
 }
