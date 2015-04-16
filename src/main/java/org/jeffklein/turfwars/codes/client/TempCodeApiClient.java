@@ -6,6 +6,8 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +20,7 @@ import java.util.ResourceBundle;
  * TurfWars Temp Code API Client reimplemented in Java.
  * The original implementation was done in PHP by Nick.
  */
+@Component
 public class TempCodeApiClient {
 
     private static ResourceBundle bundle = ResourceBundle.getBundle("tw-api");
