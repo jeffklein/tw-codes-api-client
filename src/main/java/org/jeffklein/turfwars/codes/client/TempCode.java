@@ -1,24 +1,38 @@
 package org.jeffklein.turfwars.codes.client;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 /**
- * TODO: redo this with Jackson annotations
+ * Java representation of a turf wars temp code.
  */
 public class TempCode {
-  private Date expires;
-  private String code;
 
-  public TempCode(Date expires, String code) {
-    this.expires = expires;
-    this.code = code;
-  }
+    @JsonProperty
+    private long expires;
 
-  public Date getExpires() {
-    return expires;
-  }
+    @JsonProperty
+    private String code;
 
-  public String getCode() {
-    return code;
-  }
+    public TempCode() {
+    }
+
+    public TempCode(Date expires, String code) {
+        this.expires = expires.getTime();
+        this.code = code;
+    }
+
+    public Date getExpires() {
+        return new Date(expires);
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public String toString() {
+        return "{code=" + code + "|expires=" + expires + "}";
+    }
 }

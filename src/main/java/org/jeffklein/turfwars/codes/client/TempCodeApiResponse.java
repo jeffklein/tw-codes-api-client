@@ -1,35 +1,44 @@
 package org.jeffklein.turfwars.codes.client;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Jeff
- * Date: 4/12/15
- * Time: 3:53 PM
- * To change this template use File | Settings | File Templates.
+ * Bean representation of a typical temp code API response.
  */
 public class TempCodeApiResponse {
-  private Date timestamp;
-  private Date nextUpdate;
-  private List<TempCode> codes;
 
-  public TempCodeApiResponse(Date timestamp, Date nextUpdate, List<TempCode> codes) {
-    this.timestamp = timestamp;
-    this.nextUpdate = nextUpdate;
-    this.codes = codes;
-  }
+    @JsonProperty(value = "body")
+    private TempCodeApiResponseJSONBody jsonBody;
 
-  public Date getTimestamp() {
-    return timestamp;
-  }
+    @JsonProperty(value = "header")
+    private TempCodeApiResponseJSONHeader jsonHeader;
 
-  public Date getNextUpdate() {
-    return nextUpdate;
-  }
+    public Date getTimestamp() {
+        return new Date(jsonBody.getTimestamp());
+    }
 
-  public List<TempCode> getCodes() {
-    return codes;
-  }
+    public Date getNextUpdate() {
+        return new Date(jsonBody.getNextUpdate());
+    }
+
+    public List<TempCode> getTempCodes() {
+        return jsonBody.getCodes();
+    }
+
+    public int getApiResponseCode() {
+        return jsonHeader.getResponseCode();
+    }
+
+    public String getApiResponseMessaage() {
+        return jsonHeader.getResponseMessage();
+    }
+
+    @Override
+    public String toString() {
+        return "TempCodeApiResponse:{header=" + jsonHeader + "|body=" + jsonBody + "}";
+    }
 }
+
