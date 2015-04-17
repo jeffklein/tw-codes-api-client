@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
  * TurfWars Temp Code API Client reimplemented in Java.
  * The original implementation was done in PHP by Nick.
  */
-@Component
 public class TurfWarsApiClient {
 
     private static ResourceBundle bundle = ResourceBundle.getBundle("tw-api");
