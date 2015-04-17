@@ -27,11 +27,11 @@ public class TurfWarsApiClient {
 
     public static final String MY_API_SECRET = bundle.getString("my.api.secret");
 
-    public List<TempCode> getTempCodes() throws TurfWarsApiException {
+    public List<TempCode> getTempCodes() throws TurfWarsApiClientException {
         return getTempCodeApiResponse().getTempCodes();
     }
 
-    public TempCodeApiJsonResponse getTempCodeApiResponse() throws TurfWarsApiException {
+    public TempCodeApiJsonResponse getTempCodeApiResponse() throws TurfWarsApiClientException {
         HttpResponse<JsonNode> response;
         try {
             response = Unirest.get(URL_INVITE_CODES)
@@ -39,7 +39,7 @@ public class TurfWarsApiClient {
                     .header("X-api-digest", digest())
                     .asJson();
         } catch (UnirestException e) {
-            throw new TurfWarsApiException("Problem while fetching temp codes from URL: " + URL_INVITE_CODES, e);
+            throw new TurfWarsApiClientException("Problem while fetching temp codes from URL: " + URL_INVITE_CODES, e);
         }
 
         return new TurfWarsApiClientJsonParser().deserializeJsonStream(
@@ -53,7 +53,7 @@ public class TurfWarsApiClient {
         try {
             digest = sha1(MY_API_KEY + "(.)(.)" + MY_API_SECRET);
         } catch (NoSuchAlgorithmException e) {
-            throw new TurfWarsApiException("Unable to generate SHA1 hash.", e);
+            throw new TurfWarsApiClientException("Unable to generate SHA1 hash.", e);
         }
         return digest;
     }

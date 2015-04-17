@@ -15,7 +15,7 @@ public class TurfWarsApiClientJsonParser {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(inputStream, typeReference);
         } catch (IOException ioe) {
-            throw new TurfWarsApiException("An error occurred while deserializing JSON response to a POJO.", ioe);
+            throw new TurfWarsApiClientException("An error occurred while deserializing JSON response to a POJO.", ioe);
         }
     }
 }
