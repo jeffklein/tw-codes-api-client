@@ -14,13 +14,13 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Tests for the TurfWars TempCodeApiClient
+ * Tests for the TurfWars TurfWarsApiClient
  */
-public class TempCodeApiClientTest {
+public class TurfWarsApiClientTest {
 
-    private static Log LOG = LogFactory.getLog(TempCodeApiClientTest.class);
+    private static Log LOG = LogFactory.getLog(TurfWarsApiClientTest.class);
 
-    private TempCodeApiClient client = new TempCodeApiClient();
+    private TurfWarsApiClient client = new TurfWarsApiClient();
 
     @Test
     public void testGetCodes() throws Throwable {
@@ -59,7 +59,7 @@ public class TempCodeApiClientTest {
     @Test
     public void testJsonParserWithStaticContent() throws IOException {
         InputStream inputStream = new ClassPathResource("sample.json").getInputStream();
-        TempCodeApiClientJsonParser parser = new TempCodeApiClientJsonParser();
+        TurfWarsApiClientJsonParser parser = new TurfWarsApiClientJsonParser();
         TempCodeApiJsonResponse pojo = parser.deserializeJsonStream(inputStream, new TypeReference<TempCodeApiJsonResponse>(){});
         Assert.assertNotNull(pojo);
         LOG.info(pojo.toString());

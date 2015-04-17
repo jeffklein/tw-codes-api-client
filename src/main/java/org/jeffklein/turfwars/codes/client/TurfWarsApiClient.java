@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
  * The original implementation was done in PHP by Nick.
  */
 @Component
-public class TempCodeApiClient {
+public class TurfWarsApiClient {
 
     private static ResourceBundle bundle = ResourceBundle.getBundle("tw-api");
 
@@ -42,7 +42,7 @@ public class TempCodeApiClient {
             throw new TurfWarsApiException("Problem while fetching temp codes from URL: " + URL_INVITE_CODES, e);
         }
 
-        return new TempCodeApiClientJsonParser().deserializeJsonStream(
+        return new TurfWarsApiClientJsonParser().deserializeJsonStream(
                 response.getRawBody(),
                 new TypeReference<TempCodeApiJsonResponse>() {}
         );
