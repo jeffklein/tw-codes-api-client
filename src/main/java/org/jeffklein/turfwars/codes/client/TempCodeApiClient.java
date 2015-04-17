@@ -1,16 +1,12 @@
 package org.jeffklein.turfwars.codes.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -35,7 +31,7 @@ public class TempCodeApiClient {
         return getTempCodeApiResponse().getTempCodes();
     }
 
-    public TempCodeApiResponse getTempCodeApiResponse() throws TurfWarsApiException {
+    public TempCodeApiJsonResponse getTempCodeApiResponse() throws TurfWarsApiException {
         HttpResponse<JsonNode> response;
         try {
             response = Unirest.get(URL_INVITE_CODES)
@@ -46,17 +42,10 @@ public class TempCodeApiClient {
             throw new TurfWarsApiException("Problem while fetching temp codes from URL: " + URL_INVITE_CODES, e);
         }
 
-        InputStream inputStream = response.getRawBody();
-        TempCodeApiResponse pojo;
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            pojo = mapper.readValue(inputStream, new TypeReference<TempCodeApiResponse>() {
-            });
-        } catch (IOException ioe) {
-            throw new TurfWarsApiException("An error occurred while deserializing JSON response to a POJO. JSON message:\n"
-                    + response.getBody().getObject().toString(2), ioe);
-        }
-        return pojo;
+        return new TempCodeApiClientJsonParser().deserializeJsonStream(
+                response.getRawBody(),
+                new TypeReference<TempCodeApiJsonResponse>() {}
+        );
     }
 
     protected String digest() {

@@ -1,7 +1,6 @@
 package org.jeffklein.turfwars.codes.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.io.ClassPathResource;
@@ -36,7 +35,7 @@ public class TempCodeApiClientTest {
 
     @Test
     public void testGetTempCodeApiResponse() throws Throwable {
-        TempCodeApiResponse response = client.getTempCodeApiResponse();
+        TempCodeApiJsonResponse response = client.getTempCodeApiResponse();
         Assert.assertNotNull(response.getTimestamp());
         Assert.assertTrue(String.valueOf(response.getTimestamp().getTime()).startsWith("14"));
         Assert.assertNotNull(response.getNextUpdate());
@@ -58,10 +57,10 @@ public class TempCodeApiClientTest {
     }
 
     @Test
-    public void testDeserializeSampleJson() throws IOException {
+    public void testJsonParserWithStaticContent() throws IOException {
         InputStream inputStream = new ClassPathResource("sample.json").getInputStream();
-        ObjectMapper mapper = new ObjectMapper();
-        TempCodeApiResponse pojo = mapper.readValue(inputStream, new TypeReference<TempCodeApiResponse>(){});
+        TempCodeApiClientJsonParser parser = new TempCodeApiClientJsonParser();
+        TempCodeApiJsonResponse pojo = parser.deserializeJsonStream(inputStream, new TypeReference<TempCodeApiJsonResponse>(){});
         Assert.assertNotNull(pojo);
         LOG.info(pojo.toString());
         Assert.assertEquals(pojo.getTimestamp(), new Date(1428873264));

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * The 'body' section of the JSON.
  */
-class TempCodeApiResponseJSONBody {
+class TempCodeApiJsonResponseBody {
 
     @JsonProperty(value = "timestamp")
     private long timestamp;

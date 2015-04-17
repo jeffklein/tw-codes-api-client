@@ -8,13 +8,13 @@ import java.util.List;
 /**
  * Bean representation of a typical temp code API response.
  */
-public class TempCodeApiResponse {
+public class TempCodeApiJsonResponse {
 
     @JsonProperty(value = "body")
-    private TempCodeApiResponseJSONBody jsonBody;
+    private TempCodeApiJsonResponseBody jsonBody;
 
     @JsonProperty(value = "header")
-    private TempCodeApiResponseJSONHeader jsonHeader;
+    private TempCodeApiJsonResponseHeader jsonHeader;
 
     public Date getTimestamp() {
         return new Date(jsonBody.getTimestamp());
@@ -38,7 +38,7 @@ public class TempCodeApiResponse {
 
     @Override
     public String toString() {
-        return "TempCodeApiResponse:{header=" + jsonHeader + "|body=" + jsonBody + "}";
+        return "TempCodeApiJsonResponse:{header=" + jsonHeader + "|body=" + jsonBody + "}";
     }
 }
 

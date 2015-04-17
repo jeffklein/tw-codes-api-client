@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * The 'header' section of the JSON.
  */
-class TempCodeApiResponseJSONHeader {
+class TempCodeApiJsonResponseHeader {
     @JsonProperty(value = "ts")
     private long headerTimestamp;
 
