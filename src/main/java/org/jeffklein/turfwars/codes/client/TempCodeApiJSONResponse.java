@@ -3,7 +3,7 @@ package org.jeffklein.turfwars.codes.client;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Bean representation of a typical temp code API response.
@@ -24,7 +24,7 @@ public class TempCodeApiJsonResponse {
         return new Date(jsonBody.getNextUpdate());
     }
 
-    public List<TempCode> getTempCodes() {
+    public Set<TempCode> getTempCodes() {
         return jsonBody.getCodes();
     }
 

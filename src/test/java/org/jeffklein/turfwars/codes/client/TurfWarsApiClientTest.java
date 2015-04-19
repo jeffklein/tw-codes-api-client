@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Tests for the TurfWars TurfWarsApiClient
@@ -24,10 +24,10 @@ public class TurfWarsApiClientTest {
 
     @Test
     public void testGetCodes() throws Throwable {
-        List<TempCode> codeList = client.getTempCodes();
-        Assert.assertNotNull(codeList);
-        Assert.assertTrue(codeList.size() >= 1);
-        TempCode firstCode = codeList.get(0);
+        Set<TempCode> codes = client.getTempCodes();
+        Assert.assertNotNull(codes);
+        Assert.assertTrue(codes.size() >= 1);
+        TempCode firstCode = codes.toArray(new TempCode[codes.size()])[0];
         Assert.assertNotNull(firstCode);
         Assert.assertTrue(String.valueOf(firstCode.getExpires().getTime()).startsWith("14"));
         Assert.assertTrue(firstCode.getCode().startsWith("-"));
@@ -41,10 +41,10 @@ public class TurfWarsApiClientTest {
         Assert.assertNotNull(response.getNextUpdate());
         Assert.assertTrue(response.getTimestamp().before(response.getNextUpdate()));
 
-        List<TempCode> codeList = response.getTempCodes();
-        Assert.assertNotNull(codeList);
-        Assert.assertTrue(codeList.size() >= 1);
-        TempCode firstCode = codeList.get(0);
+        Set<TempCode> codes = response.getTempCodes();
+        Assert.assertNotNull(codes);
+        Assert.assertTrue(codes.size() >= 1);
+        TempCode firstCode = codes.toArray(new TempCode[codes.size()])[0];
         Assert.assertNotNull(firstCode);
         Assert.assertTrue(String.valueOf(firstCode.getExpires().getTime()).startsWith("14"));
         Assert.assertTrue(firstCode.getCode().startsWith("-"));
@@ -65,9 +65,22 @@ public class TurfWarsApiClientTest {
         LOG.info(pojo.toString());
         Assert.assertEquals(pojo.getTimestamp(), new Date(1428873264));
         Assert.assertEquals(pojo.getNextUpdate(), new Date(1428894864));
-        Assert.assertEquals(pojo.getTempCodes().size(), 4);
-        Assert.assertEquals(pojo.getTempCodes().get(3).getCode(), "-691-374");
-        Assert.assertEquals(pojo.getTempCodes().get(3).getExpires(), new Date(1429180222));
+        Set<TempCode> codes = pojo.getTempCodes();
+        Assert.assertEquals(codes.size(), 4);
+        for (TempCode code : codes) {
+            if (code.getCode().equals("-404-930")) {
+                Assert.assertEquals(code.getExpires(), new Date(1429027158));
+            }
+            if (code.getCode().equals("-799-135")) {
+                Assert.assertEquals(code.getExpires(), new Date(1429430755));
+            }
+            if (code.getCode().equals("-114-184")) {
+                Assert.assertEquals(code.getExpires(), new Date(1429279568));
+            }
+            if (code.getCode().equals("-691-374")) {
+                Assert.assertEquals(code.getExpires(), new Date(1429180222));
+            }
+        }
     }
 }
 

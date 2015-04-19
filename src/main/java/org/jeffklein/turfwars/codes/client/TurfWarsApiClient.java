@@ -5,12 +5,11 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * TurfWars Temp Code API Client reimplemented in Java.
@@ -26,7 +25,7 @@ public class TurfWarsApiClient {
 
     public static final String MY_API_SECRET = bundle.getString("my.api.secret");
 
-    public List<TempCode> getTempCodes() throws TurfWarsApiClientException {
+    public Set<TempCode> getTempCodes() throws TurfWarsApiClientException {
         return getTempCodeApiResponse().getTempCodes();
     }
 
@@ -43,7 +42,8 @@ public class TurfWarsApiClient {
 
         return new TurfWarsApiClientJsonParser().deserializeJsonStream(
                 response.getRawBody(),
-                new TypeReference<TempCodeApiJsonResponse>() {}
+                new TypeReference<TempCodeApiJsonResponse>() {
+                }
         );
     }
 

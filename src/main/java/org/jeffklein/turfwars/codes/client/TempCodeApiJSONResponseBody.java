@@ -2,7 +2,7 @@ package org.jeffklein.turfwars.codes.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * The 'body' section of the JSON.
@@ -16,13 +16,13 @@ class TempCodeApiJsonResponseBody {
     private long nextUpdate;
 
     @JsonProperty(value = "codes")
-    private List<TempCode> codes;
+    private Set<TempCode> codes;
 
     long getTimestamp() {
         return timestamp;
     }
 
-    List<TempCode> getCodes() {
+    Set<TempCode> getCodes() {
         return codes;
     }
 
