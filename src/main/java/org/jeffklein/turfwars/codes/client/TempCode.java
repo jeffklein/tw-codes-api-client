@@ -7,8 +7,6 @@ import java.util.Date;
 /**
  * Java representation of a turf wars temp code.
  *
- *  @param  expires the expiry date of a temp code
- *  @param  code    the string representing a single temp code
  */
 public class TempCode {
 
@@ -18,12 +16,19 @@ public class TempCode {
     @JsonProperty
     private String code;
 
+    /**
+     *  TempCode class default constructor
+     *
+     */
+
     public TempCode() {
     }
 
     /**
-     * pairs a temp code with its expiration date
+     *  pairs a temp code with its expiration date
      *
+     *  @param expires  the expiry date of a temp code
+     *  @param code     the string representing a single temp code
      */
 
     public TempCode(Date expires, String code) {
@@ -52,13 +57,12 @@ public class TempCode {
     }
 
     /**
-     *  formats a temp code and it's corresponding expiration date into a string
+     *  formats a temp code and it's corresponding expiry date into a string
      *
-     *  @return
+     *  @return formatted string representation of this instance
      */
 
     @Override
-    public String toString() {
-        return "{code=" + code + "|expires=" + expires + "}";
-    }
+    public String toString() {return "{code=" + code + "|expires=" + expires + "}"; }
+
 }
