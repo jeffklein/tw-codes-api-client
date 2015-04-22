@@ -60,7 +60,8 @@ public class TurfWarsApiClientTest {
     public void testJsonParserWithStaticContent() throws IOException {
         InputStream inputStream = new ClassPathResource("sample.json").getInputStream();
         TurfWarsApiClientJsonParser parser = new TurfWarsApiClientJsonParser();
-        TempCodeApiJsonResponse pojo = parser.deserializeJsonStream(inputStream, new TypeReference<TempCodeApiJsonResponse>(){});
+        TempCodeApiJsonResponse pojo = parser.deserializeJsonStream(inputStream, new TypeReference<TempCodeApiJsonResponse>() {
+        });
         Assert.assertNotNull(pojo);
         LOG.info(pojo.toString());
         Assert.assertEquals(pojo.getTimestamp(), new Date(1428873264));

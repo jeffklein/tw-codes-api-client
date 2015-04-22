@@ -6,63 +6,48 @@ import java.util.Date;
 
 /**
  * Java representation of a turf wars temp code.
- *
+ * @author jeffklein
  */
 public class TempCode {
 
+    /**
+     * Temp code expiration date expressed as ms since Jan. 1 1970.
+     * Assumption is that codes fetched from the API are in UTC.
+     */
     @JsonProperty
     private long expires;
 
+    /**
+     * The temp code itself in the format '-123-456'
+     */
     @JsonProperty
     private String code;
 
     /**
-     *  TempCode class default constructor
+     * Get this temp code's expiration date.
      *
+     * @return the date this temp code will expire
      */
-
-    public TempCode() {
-    }
-
-    /**
-     *  pairs a temp code with its expiration date
-     *
-     *  @param expires  the expiry date of a temp code
-     *  @param code     the string representing a single temp code
-     */
-
-    public TempCode(Date expires, String code) {
-        this.expires = expires.getTime();
-        this.code = code;
-    }
-
-    /**
-     *  determines a temp codes expiration date
-     *
-     *  @return the date a temp code will expire
-     */
-
     public Date getExpires() {
         return new Date(expires);
     }
 
     /**
-     *  specifies a temp code
+     * Get this temp code's code.
      *
-     *  @return the temp code itself
+     * @return the code
      */
-
     public String getCode() {
         return code;
     }
 
     /**
-     *  formats a temp code and it's corresponding expiry date into a string
+     * Formats a temp code and it's corresponding expiry date into a String.
      *
-     *  @return formatted string representation of this instance
+     * @return Formatted string representation of this instance
      */
-
     @Override
-    public String toString() {return "{code=" + code + "|expires=" + expires + "}"; }
-
+    public String toString() {
+        return "{code=" + code + "|expires=" + expires + "}";
+    }
 }
