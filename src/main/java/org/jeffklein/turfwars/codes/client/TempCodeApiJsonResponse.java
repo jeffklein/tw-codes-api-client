@@ -24,52 +24,52 @@ public class TempCodeApiJsonResponse {
     private TempCodeApiJsonResponseHeader jsonHeader;
 
     /**
-     *
-     * @return
+     * Getter for the "body":"timestamp" JSON node.
+     * @return the timestamp from the Turf Wars server
      */
     public Date getTimestamp() {
         return new Date(jsonBody.getTimestamp());
     }
 
     /**
-     *
-     * @return
+     * Getter for the "body":"next_update" JSON node.
+     * @return the time the next update is expected.
      */
     public Date getNextUpdate() {
         return new Date(jsonBody.getNextUpdate());
     }
 
     /**
-     *
-     * @return
+     * The set of temp codes from the "body":"codes" JSON array.
+     * @return the set of codes included with this API response.
      */
     public Set<TempCode> getTempCodes() {
         return jsonBody.getCodes();
     }
 
     /**
-     *
-     * @return
+     * Getter for the API response code from the JSON header.
+     * @return the API response code from the JSON header.
      */
     public int getApiResponseCode() {
         return jsonHeader.getResponseCode();
     }
 
     /**
-     *
-     * @return
+     * Getter for the response message included in "header":"msg".
+     * @return the response message.
      */
     public String getApiResponseMessaage() {
         return jsonHeader.getResponseMessage();
     }
 
     /**
-     *
-     * @return
+     * Dump the fields of this JSON response in humanly readable form.
+     * @return the names and values of each variable returned with this JSON response.
      */
     @Override
     public String toString() {
-        return "TempCodeApiJsonResponse:{header=" + jsonHeader + "|body=" + jsonBody + "}";
+        return "{header=" + jsonHeader + "|body=" + jsonBody + "}";
     }
 }
 
