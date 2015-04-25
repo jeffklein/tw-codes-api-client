@@ -2,8 +2,6 @@ package org.jeffklein.turfwars.codes.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
-
 /**
  * Java representation of a turf wars temp code.
  * @author jeffklein
@@ -28,8 +26,8 @@ public class TempCode {
      *
      * @return the date this temp code will expire
      */
-    public Date getExpires() {
-        return new Date(expires);
+    public long getExpires() {
+        return this.expires;
     }
 
     /**

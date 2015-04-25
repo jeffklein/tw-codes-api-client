@@ -2,7 +2,6 @@ package org.jeffklein.turfwars.codes.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -27,16 +26,16 @@ public class TempCodeApiJsonResponse {
      * Getter for the "body":"timestamp" JSON node.
      * @return the timestamp from the Turf Wars server
      */
-    public Date getTimestamp() {
-        return new Date(jsonBody.getTimestamp());
+    public long getTimestamp() {
+        return jsonBody.getTimestamp();
     }
 
     /**
      * Getter for the "body":"next_update" JSON node.
      * @return the time the next update is expected.
      */
-    public Date getNextUpdate() {
-        return new Date(jsonBody.getNextUpdate());
+    public long getNextUpdate() {
+        return jsonBody.getNextUpdate();
     }
 
     /**
