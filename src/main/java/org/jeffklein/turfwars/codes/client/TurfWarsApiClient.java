@@ -14,13 +14,11 @@ import java.util.Set;
 /**
  * TurfWars Temp Code API Client reimplemented in Java.
  * The original implementation was done in PHP by Nick.
+ *
  * @author jeffklein
  */
 public class TurfWarsApiClient {
 
-    /**
-     * TODO: move this api key crap into a separate git repo and make it a dependency
-     */
     private static ResourceBundle bundle = ResourceBundle.getBundle("tw-api");
     public static final String URL_INVITE_CODES = bundle.getString("url.invite.codes");
     public static final String MY_API_KEY = bundle.getString("my.api.key");
@@ -28,19 +26,22 @@ public class TurfWarsApiClient {
 
     /**
      * Make a webservice call to Nick's site to request another batch of temp codes;
+     *
      * @return a Set of temp codes returned via turfwarsapp.com.
      * @throws TurfWarsApiClientException if anything goes wrong
      */
-    public Set<TempCode> getTempCodes() throws TurfWarsApiClientException {
+    public Set<TempCodeDTO> getTempCodes() throws TurfWarsApiClientException {
         return getTempCodeApiJsonResponse().getTempCodes();
     }
 
     /**
      * Make the actual webservice call to fetch a new batch of temp codes.
+     * This is package scoped intentionally so that it is not visible to client code.
+     *
      * @return a POJO that represents all the data downloaded from the temp code api request
      * @throws TurfWarsApiClientException if anything goes wrong
      */
-    public TempCodeApiJsonResponse getTempCodeApiJsonResponse() throws TurfWarsApiClientException {
+    TempCodeApiJsonResponse getTempCodeApiJsonResponse() throws TurfWarsApiClientException {
         HttpResponse<JsonNode> response;
         try {
             response = Unirest.get(URL_INVITE_CODES)
@@ -61,9 +62,10 @@ public class TurfWarsApiClient {
     /**
      * This is the secret sauce for authenticating against Nick's webservice.
      * Note the boobies in the code. Nice one, Nick! hehe
+     *
      * @return The encrypted authentication key for the temp code api.
      */
-    protected String digest() {
+    String digest() {
         String digest;
         try {
             digest = sha1(MY_API_KEY + "(.)(.)" + MY_API_SECRET);
@@ -75,6 +77,7 @@ public class TurfWarsApiClient {
 
     /**
      * Encrypt the given string using the SHA1 algorithm.
+     *
      * @param input the string to encrypt
      * @return the encrypted string
      * @throws NoSuchAlgorithmException this should never happen lol
