@@ -35,7 +35,7 @@ public class TurfWarsApiClientTest {
 
     @Test
     public void testGetTempCodeApiResponse() throws Throwable {
-        TempCodeApiJsonResponse response = client.getTempCodeApiResponse();
+        TempCodeApiJsonResponse response = client.getTempCodeApiJsonResponse();
         Assert.assertNotNull(response.getTimestamp());
         Assert.assertTrue(String.valueOf(response.getTimestamp().getTime()).startsWith("14"));
         Assert.assertNotNull(response.getNextUpdate());

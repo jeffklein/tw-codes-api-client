@@ -32,7 +32,7 @@ public class TurfWarsApiClient {
      * @throws TurfWarsApiClientException if anything goes wrong
      */
     public Set<TempCode> getTempCodes() throws TurfWarsApiClientException {
-        return getTempCodeApiResponse().getTempCodes();
+        return getTempCodeApiJsonResponse().getTempCodes();
     }
 
     /**
@@ -40,7 +40,7 @@ public class TurfWarsApiClient {
      * @return a POJO that represents all the data downloaded from the temp code api request
      * @throws TurfWarsApiClientException if anything goes wrong
      */
-    protected TempCodeApiJsonResponse getTempCodeApiResponse() throws TurfWarsApiClientException {
+    public TempCodeApiJsonResponse getTempCodeApiJsonResponse() throws TurfWarsApiClientException {
         HttpResponse<JsonNode> response;
         try {
             response = Unirest.get(URL_INVITE_CODES)
