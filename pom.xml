@@ -12,6 +12,12 @@
         <springframework.version>4.1.6.RELEASE</springframework.version>
     </properties>
 
+    <scm>
+        <connection>scm:git:git@github.com:jeffklein/tw-codes-api-client.git</connection>
+        <url>scm:git:git@github.com:jeffklein/tw-codes-api-client</url>
+        <developerConnection>scm:git:git@github.com:jeffklein/tw-codes-api-client.git</developerConnection>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>commons-logging</groupId>
