@@ -29,7 +29,7 @@ public class TurfWarsApiClientTest {
         TempCodeDTO firstCode = codes.toArray(new TempCodeDTO[codes.size()])[0];
         Assert.assertNotNull(firstCode);
         Assert.assertTrue(String.valueOf(firstCode.getExpirationDate()).startsWith("14"));
-        Assert.assertTrue(firstCode.getTempCode().startsWith("-"));
+        Assert.assertTrue(firstCode.getCode().startsWith("-"));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class TurfWarsApiClientTest {
         TempCodeDTO firstCode = codes.toArray(new TempCodeDTO[codes.size()])[0];
         Assert.assertNotNull(firstCode);
         Assert.assertTrue(String.valueOf(firstCode.getExpirationDate()).startsWith("14"));
-        Assert.assertTrue(firstCode.getTempCode().startsWith("-"));
+        Assert.assertTrue(firstCode.getCode().startsWith("-"));
     }
 
     @Test
@@ -68,16 +68,16 @@ public class TurfWarsApiClientTest {
         Set<TempCodeDTO> codes = pojo.getTempCodes();
         Assert.assertEquals(codes.size(), 4);
         for (TempCodeDTO code : codes) {
-            if (code.getTempCode().equals("-404-930")) {
+            if (code.getCode().equals("-404-930")) {
                 Assert.assertEquals(code.getExpirationDate(), 1429027158L);
             }
-            if (code.getTempCode().equals("-799-135")) {
+            if (code.getCode().equals("-799-135")) {
                 Assert.assertEquals(code.getExpirationDate(), 1429430755L);
             }
-            if (code.getTempCode().equals("-114-184")) {
+            if (code.getCode().equals("-114-184")) {
                 Assert.assertEquals(code.getExpirationDate(), 1429279568L);
             }
-            if (code.getTempCode().equals("-691-374")) {
+            if (code.getCode().equals("-691-374")) {
                 Assert.assertEquals(code.getExpirationDate(), 1429180222L);
             }
         }

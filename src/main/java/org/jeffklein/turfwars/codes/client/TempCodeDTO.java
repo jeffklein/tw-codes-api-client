@@ -7,16 +7,16 @@ package org.jeffklein.turfwars.codes.client;
  */
 public class TempCodeDTO {
 
-    public TempCodeDTO(String tempCode,
+    public TempCodeDTO(String code,
                        long expirationDate,
-                       long serverBatchPostedDate,
-                       long serverNextBatchAvailableDate,
+                       long serverTimestamp,
+                       long nextUpdateTimestamp,
                        int apiResponseCode,
                        String apiResponseMessage) {
         this.expirationDate = expirationDate;
-        this.tempCode = tempCode;
-        this.serverBatchPostedDate = serverBatchPostedDate;
-        this.serverNextBatchAvailableDate = serverNextBatchAvailableDate;
+        this.code = code;
+        this.serverTimestamp = serverTimestamp;
+        this.nextUpdateTimestamp = nextUpdateTimestamp;
         this.apiResponseCode = apiResponseCode;
         this.apiResponseMessage = apiResponseMessage;
     }
@@ -30,17 +30,17 @@ public class TempCodeDTO {
     /**
      * The temp code itself in the format '-123-456'
      */
-    private String tempCode;
+    private String code;
 
     /**
      * The timestamp (assumed to be UTC) given in the body of the JSON response.
      */
-    private long serverBatchPostedDate;
+    private long serverTimestamp;
 
     /**
      * Date when we can expect to get the next update of tempcodes.
      */
-    private long serverNextBatchAvailableDate;
+    private long nextUpdateTimestamp;
 
     /**
      * The API response code. "1" seems to indicate success.
@@ -64,10 +64,10 @@ public class TempCodeDTO {
     /**
      * Get the value of this temp code's code.
      *
-     * @return the tempCode
+     * @return the code
      */
-    public String getTempCode() {
-        return tempCode;
+    public String getCode() {
+        return code;
     }
 
     /**
@@ -93,8 +93,8 @@ public class TempCodeDTO {
      *
      * @return the server timestamp
      */
-    public long getServerBatchPostedDate() {
-        return serverBatchPostedDate;
+    public long getServerTimestamp() {
+        return serverTimestamp;
     }
 
     /**
@@ -102,8 +102,8 @@ public class TempCodeDTO {
      *
      * @return the expected time of the next update
      */
-    public long getServerNextBatchAvailableDate() {
-        return serverNextBatchAvailableDate;
+    public long getNextUpdateTimestamp() {
+        return nextUpdateTimestamp;
     }
 
     /**
@@ -115,9 +115,9 @@ public class TempCodeDTO {
     public String toString() {
         return "TempCodeDTO{" +
                 "expirationDate=" + expirationDate +
-                ", tempCode='" + tempCode + '\'' +
-                ", serverBatchPostedDate=" + serverBatchPostedDate +
-                ", serverNextBatchAvailableDate=" + serverNextBatchAvailableDate +
+                ", code='" + code + '\'' +
+                ", serverTimestamp=" + serverTimestamp +
+                ", nextUpdateTimestamp=" + nextUpdateTimestamp +
                 ", apiResponseCode=" + apiResponseCode +
                 ", apiResponseMessage='" + apiResponseMessage + '\'' +
                 '}';
