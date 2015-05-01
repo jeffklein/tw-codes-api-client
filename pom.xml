@@ -20,11 +20,11 @@
     <distributionManagement>
         <repository>
             <id>releases</id>
-            <url>https://github.com/jklein/mvn-repo/raw/master/releases</url>
+            <url>file:../mvn-repo/releases</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
-            <url>https://github.com/jklein/mvn-repo/raw/master/snapshots</url>
+            <url>file:../mvn-repo/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
