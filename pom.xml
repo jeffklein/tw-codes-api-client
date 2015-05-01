@@ -20,7 +20,8 @@
     <distributionManagement>
         <repository>
             <id>releases</id>
-            <url>file://${project.build.directory}/../../mvn-repo/releases</url>
+            <url>https://github.com/jeffklein/mvn-repo/raw/master/releases</url>
+            <!--<url>file://${project.build.directory}/../../mvn-repo/releases</url>-->
             <layout>default</layout>
         </repository>
         <snapshotRepository>
