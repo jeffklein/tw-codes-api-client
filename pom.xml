@@ -21,10 +21,12 @@
         <repository>
             <id>releases</id>
             <url>file:../mvn-repo/releases</url>
+            <layout>default</layout>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
             <url>file:../mvn-repo/snapshots</url>
+            <layout>default</layout>
         </snapshotRepository>
     </distributionManagement>
 
@@ -37,6 +39,14 @@
                 <!--<configuration>
                     <goals>install</goals>
                 </configuration>-->
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <altReleaseDeploymentRepository>releases::default::file:../mvn-repo/releases</altReleaseDeploymentRepository>
+                    <altSnapshotDeploymentRepository>snapshots::default::file:../mvn-repo/snapshots</altSnapshotDeploymentRepository>
+                </configuration>
             </plugin>
         </plugins>
     </build>
