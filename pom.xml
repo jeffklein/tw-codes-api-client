@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jeffklein.turfwars</groupId>
     <artifactId>tw-codes-api-client</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
 
     <properties>
         <springframework.version>4.1.6.RELEASE</springframework.version>
@@ -15,7 +14,8 @@
         <connection>scm:git:git@github.com:jeffklein/tw-codes-api-client.git</connection>
         <url>scm:git:git@github.com:jeffklein/tw-codes-api-client</url>
         <developerConnection>scm:git:git@github.com:jeffklein/tw-codes-api-client.git</developerConnection>
-    </scm>
+      <tag>tw-codes-api-client-1.1</tag>
+  </scm>
 
     <distributionManagement>
         <repository>
