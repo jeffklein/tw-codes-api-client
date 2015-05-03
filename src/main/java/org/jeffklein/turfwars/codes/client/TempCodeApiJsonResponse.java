@@ -1,5 +1,7 @@
 package org.jeffklein.turfwars.codes.client;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
@@ -43,6 +45,14 @@ public class TempCodeApiJsonResponse {
     }
 
     /**
+     * Get the mode of this json feed (either DEV or PROD)
+     * @return the mode
+     */
+    public String getMode() {
+        return jsonBody.getMode();
+    }
+
+    /**
      * The set of temp codes from the "body":"codes" JSON array.
      *
      * @return the set of codes included with this API response.
@@ -56,7 +66,8 @@ public class TempCodeApiJsonResponse {
                     getTimestamp(),
                     getNextUpdate(),
                     getApiResponseCode(),
-                    getApiResponseMessaage());
+                    getApiResponseMessaage(),
+                    getMode());
             tempCodeDTOs.add(dto);
         }
         return tempCodeDTOs;
@@ -117,6 +128,12 @@ public class TempCodeApiJsonResponse {
         private Set<Code> codes;
 
         /**
+         * The mode of this json feed ("DEV" or "PROD").
+         */
+        @JsonProperty(value = "mode")
+        private String mode;
+
+        /**
          * Package scoped getter for the body "timestamp".
          * I'm not sure how this differs from the header timestamp.
          *
@@ -145,13 +162,21 @@ public class TempCodeApiJsonResponse {
         }
 
         /**
+         * Get the mode (either DEV or PROD presently)
+         * @return the mode of this json feed.
+         */
+        String getMode() {
+            return mode;
+        }
+
+        /**
          * String representation to print out values of each instance variable.
          *
          * @return the String representation of the instance variables in this class.
          */
         @Override
         public String toString() {
-            return "{timestamp=" + timestamp + "|next_update=" + nextUpdate + "|codes=" + codes + "}";
+            return "{timestamp=" + timestamp + "|next_update=" + nextUpdate + "|mode="+mode+"|codes=" + codes + "}";
         }
 
         /**

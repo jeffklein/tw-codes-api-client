@@ -7,12 +7,13 @@ package org.jeffklein.turfwars.codes.client;
  */
 public class TempCodeDTO {
 
-    public TempCodeDTO(String code,
-                       long expirationDate,
-                       long serverTimestamp,
-                       long nextUpdateTimestamp,
-                       int apiResponseCode,
-                       String apiResponseMessage) {
+    public TempCodeDTO( String code,
+                        long expirationDate,
+                        long serverTimestamp,
+                        long nextUpdateTimestamp,
+                        int apiResponseCode,
+                        String apiResponseMessage,
+                        String mode) {
         this.expirationDate = expirationDate;
         this.code = code;
         this.serverTimestamp = serverTimestamp;
@@ -51,6 +52,12 @@ public class TempCodeDTO {
      * The header response message (typically "OK" if responseCode = 1)
      */
     private String apiResponseMessage;
+
+    /**
+     * The mode of the server where the data was pulled from (DEV or PROD).
+     * This is only included for completeness.
+     */
+    private String mode;
 
     /**
      * Get this temp code's expiration date.
@@ -104,6 +111,14 @@ public class TempCodeDTO {
      */
     public long getNextUpdateTimestamp() {
         return nextUpdateTimestamp;
+    }
+
+    /**
+     * Get the mode of the server where this JSON data originated (either DEV or PROD)
+     * @return the mode
+     */
+    public String getMode() {
+        return mode;
     }
 
     /**
